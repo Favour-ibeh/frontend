@@ -29,27 +29,27 @@ jobs:
         aws-region: us-east-1
 
 
-    - name: Build container image
-      run: docker build -t bank-app-frontend:latest .
+    # - name: Build container image
+    #   run: docker build -t bank-app-frontend:latest .
 
-    - name: Log in to ECR with short-lived credentials
-      run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_REPO }}
+    # - name: Log in to ECR with short-lived credentials
+    #   run: |
+    #     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_REPO }}
   
-    - name: Tag Docker image
-      run: docker tag bank-app-frontend:latest ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
+    # - name: Tag Docker image
+    #   run: docker tag bank-app-frontend:latest ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
     
-    - name: Push image to ECR
-      run: docker push ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
+    # - name: Push image to ECR
+    #   run: docker push ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
 
 
-    - name: Clean up Docker image locally
-      run: |
-        docker rmi bank-app-frontend:latest
-        docker rmi ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
+    # - name: Clean up Docker image locally
+    #   run: |
+    #     docker rmi bank-app-frontend:latest
+    #     docker rmi ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
 
-    - name: Clean up GitHub repo on runner
-      run: rm -rf ./*
+    # - name: Clean up GitHub repo on runner
+    #   run: rm -rf ./*
 
 
   
@@ -62,7 +62,7 @@ jobs:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_PASSWORD: ${{ secrets.GIT_TOKEN }}
       run: |
-         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Favour-ibeh/Kubernetes-manifest.git
+         git clone https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/Favour-ibeh/Kubernetes-manifest.git
          
          cd kubernetes-manifest
          git config --global user.email "ibehfavourbenson@gmail.com"

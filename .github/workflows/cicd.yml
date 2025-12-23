@@ -60,7 +60,7 @@ jobs:
     - name: Checkout repository.
       env:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/Favour-ibeh/Kubernetes-manifest.git
 

@@ -13,7 +13,7 @@ jobs:
       - name: Checkout frontend repo
         uses: actions/checkout@v4
         with:
-          repository: Favour-ibeh/frontend-repo
+          repository: Favour-ibeh/frontend
           ref: main
 
       - name: Configure AWS credentials
